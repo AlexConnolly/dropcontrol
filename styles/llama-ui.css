@@ -164,10 +164,13 @@ pill.selected {
   .container .signup, .container .features, .container .lower-signup {
     width: 100% !important;
     min-height: 400px;
-    height: unset;
+    height: auto !important;
   }
   .container .lower-signup {
     display: block !important;
+  }
+  .container .features {
+    padding-top: 50px;
   }
 }
 
