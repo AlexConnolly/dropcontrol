@@ -176,6 +176,7 @@ pill {
         .signup, .features, .lower-signup {
             width: 100% !important;
             min-height: 400px;
+            height: unset;
         }
 
         .lower-signup {
@@ -183,7 +184,7 @@ pill {
         }
 
         .features {
-            
+
         }
     }
 

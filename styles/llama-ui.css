@@ -164,6 +164,7 @@ pill.selected {
   .container .signup, .container .features, .container .lower-signup {
     width: 100% !important;
     min-height: 400px;
+    height: unset;
   }
   .container .lower-signup {
     display: block !important;
