@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
+
+$colour-primary: #f1a312;
+$colour-secondary: #df4111;
+
+$colour-background: #463b30;
+
+$colour-text: #CECECE;
+$colour-text-impact: #fff;
+
+$globals-border-radius: 8px;
+
+$pill-height: 35px;
+
+body, html {
+    transition: all .5s;
+
+    padding: 0px;
+    margin: 0px;
+
+    background: $colour-background;
+    color: $colour-text;
+
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 14px;
+}
+
+.padding {
+    padding: 50px;
+}
+
+p {
+    font-size: 18px;
+}
+
+pill {
+
+    user-select: none;
+
+    display: inline-block;
+
+    background: #321C3A;
+    line-height: $pill-height;
+
+    height: $pill-height;
+
+    border-radius: $globals-border-radius;
+    
+    padding: 0 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover:not(.selected) {
+        background: #593266;
+    }
+
+    &.selected {
+        background: $colour-primary;
+        color: $colour-text-impact;
+        box-shadow: 0 2px 5px 1px rgba(1, 1, 1, 0.3);
+    }
+}
+
+
+.input-area {
+
+    margin-top: 35px;
+
+    $input-height: 45px;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 8px;
+    
+    box-shadow: 0 1px 0px 4px $colour-primary;
+
+    input {
+
+        outline: none;
+
+        flex-grow: 1;
+
+        height: $input-height;
+        line-height: $input-height;
+        border-radius: 8px;
+        padding: 10px;
+        border: none;
+
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+
+        &:focus + .input-button {
+            
+        }
+    }
+
+    button {
+        outline: none;
+
+        height: $input-height;
+        padding: 10px;
+
+        border-radius: 8px;
+
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+
+        border: none;
+
+        background: linear-gradient(146deg, $colour-primary 0%, $colour-secondary 100%);
+
+        color: $colour-text-impact;
+        font-weight: 600;
+
+        margin-left: -4px;
+
+        &:hover {
+            cursor: pointer;
+            background: $colour-primary;
+        }
+
+        &:active {
+            background: $colour-secondary;
+        }
+    }
+}
+
+.signup-response {
+
+    @keyframes animate-in {
+        0% {
+            opacity: 0;
+            transform: scale(0.7);
+            margin-bottom: -20px;
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+            margin-bottom: 0px;
+        }
+    }
+
+    animation: animate-in ease-in-out .5s;
+
+    display: block;
+    background: $colour-secondary;
+    color: $colour-text-impact;    
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 1px $colour-secondary;
+
+    &.problem {
+        background: #c93e3e;
+        box-shadow: 0px 4px 1px #a53434;
+    }
+}
+
+
+.container {
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    
+    @media all and (max-width: 850px) {
+        display: block !important;
+        
+        .signup, .features, .lower-signup {
+            width: 100% !important;
+        }
+
+        .lower-signup {
+            
+            display: block !important;
+        }
+
+        .features {
+            margin-top: -100px;
+        }
+    }
+
+    .lower-signup {
+        display: none;
+        
+        .cta-area {
+            padding: 25px;
+            margin-bottom: 100px;
+        }
+    }
+
+    .signup {
+        height: 100%;
+        width: 50%;
+
+        background-image:  linear-gradient(180deg, $colour-background 0%, darken($colour-background, 10%) 100%);
+
+        display: flex;
+        flex-direction: column;
+
+        .signup-area {
+
+            flex-grow: 1;
+
+            display: flex;
+            flex-direction: column;
+            
+            justify-content: center;
+        }
+    }
+    
+    .features {
+        width: 50%;
+        height: 100%;
+        background: $colour-primary;
+        box-shadow: 0px 0px 10px 1px #2a2a2a;
+        background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(146deg, $colour-primary 0%, $colour-secondary 100%);
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        .feature-list {
+
+            .feature {
+
+                &:hover {
+                    .icon {
+                        transform: scale(1.3);
+                    }
+                }
+
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}n) {
+                        animation-delay: #{$i * 0.6}s;
+                    }
+                }
+
+                @keyframes slide-in-animation {
+                    0% {
+                        opacity: 0;
+                    }
+
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
+                animation: slide-in-animation .5s ease-in-out;
+                animation-fill-mode: forwards;
+
+                margin-bottom: 60px;
+                opacity: 0;
+
+                display: flex;
+                flex-direction: row;
+
+                .feature-icon {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items:center;
+
+                    .icon {    
+                        transition: all .3s;
+                        padding: 0px 25px;
+                        font-size: 32px;
+                        color: #e6e6e6;
+                        text-shadow: 4px 4px $colour-secondary, 8px 8px $colour-primary;
+                    }
+                }
+
+                .feature-content {
+                    flex-grow: 1;
+
+                    color: $colour-text-impact;
+
+                    .feature-title {
+                        font-size: 28px;
+                        font-weight: 600;
+                    }
+
+                    .feature-message {
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+h1 {
+    font-size: 36px;
+    color: $colour-text-impact;
+}

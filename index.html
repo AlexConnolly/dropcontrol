@@ -1,0 +1,189 @@
+<html>
+    <!--Copyright Wild Bear Software - Do not copy -->
+    <head>
+        <link rel="stylesheet" href="styles/llama-ui.css">
+        <meta charset="UTF-8">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>
+            DropControl
+        </title>
+
+        <meta name="description" content="Control your hyped releases with DropControl - The fairer way to drop">
+    </head>
+    <body>
+        <div class="container">
+            <div class="signup">
+
+                <div class="signup-area">
+                    <div class="padding">
+                        <h1>
+                            👟DropControl
+                        </h1>
+                        <p>
+                            Control your hyped releases with a fairer way to drop
+                        </p>
+
+
+                        <div class="signup-response" style="display: none" id="response">
+                            🎉 <Strong>You're in!</Strong> Check your emails to confirm and we'll let you know when we're ready for you.
+                        </div>
+    
+                        <div class="signup-response problem"  style="display: none" id="response-problem">
+                            ❌ <strong>Couldn't signup</strong> <span id="response-problem-text"></span>
+                        </div>
+    
+                        <div class="input-area">
+                            <input type="email" placeholder="Your email address" id="input">
+            
+                            <button class="input-button" onclick="submit_email('input', 'input-button', 'response', 'response-problem', 'response-problem-text')" id="input-button">
+                                Register your interest
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="padding">
+                    &nbsp;
+                </div>
+            </div>
+    
+            <div class="features">
+                <div class="feature-list">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <div class="icon">👕</div>
+                        </div>
+
+                        <div class="feature-content">
+                            <div class="feature-title">
+                                Fairer releases
+                            </div>
+                            <div class="feature-message">
+                                Make it fair for all your customers with secure, stable drops
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <div class="icon">👨‍💻</div>
+                        </div>
+
+                        <div class="feature-content">
+                            <div class="feature-title">
+                                Take the load off your site
+                            </div>
+                            <div class="feature-message">
+                                Your drops will be released on our site, keeping your site online
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <div class="icon">😃</div>
+                        </div>
+
+                        <div class="feature-content">
+                            <div class="feature-title">
+                                We handle the drop, you do what you do best
+                            </div>
+                            <div class="feature-message">
+                                Direct your customers to your custom DropControl drop and we'll handle the rest
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <div class="icon">🛒</div>
+                        </div>
+
+                        <div class="feature-content">
+                            <div class="feature-title">
+                                Shopping Cart Integration
+                            </div>
+                            <div class="feature-message">
+                                Once the drop is finished, we'll submit the orders to your platform with all the users information
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lower-signup">
+
+                <div class="cta-area">
+
+                    <h1>
+                        Want to join our early access?
+                    </h1>
+
+                    <p>
+                        Enter your email below to join our early access mailing list.
+                    </p>
+
+                    <div class="signup-response" style="display: none" id="response-lower">
+                        🎉 <Strong>You're in!</Strong> Check your emails to confirm and we'll let you know when we're ready for you.
+                    </div>
+
+                    <div class="signup-response problem"  style="display: none" id="response-problem-lower">
+                        ❌ <strong>Couldn't signup</strong> <span id="response-problem-lower-text"></span>
+                    </div>
+
+                    <div class="input-area">
+                        <input type="email" placeholder="Your email address" id="input-lower">
+        
+                        <button class="input-button" onclick="submit_email('input-lower', 'input-lower-button', 'response-lower', 'response-problem-lower', 'response-problem-lower-text')" id="input-lower-button">
+                            🎉 Get early access!
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <script>
+            function submit_email(inputId, buttonId, successId, errorId, errorMessageId) {
+
+                let inputText = $("#" + inputId).val();
+
+                let buttonText = $("#" + buttonId).html();
+
+                $("#" + buttonId).html("<i class='fa fa-spinner fa-pulse'/>");
+            
+                
+                $("#" + successId).css({"display": "none"});
+                $("#" + errorId).css({"display": "none"});
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: 'https://djr23393mi.execute-api.us-west-2.amazonaws.com/Prod/api/signups',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(
+                        {
+                            email: inputText,
+                            userType: "teacher"
+                        }
+                    ),
+                    success: (result) => {
+                        $("#" + successId).css({"display": "block"});
+                    },
+                    error: (status, exception) => {
+                        if(status.status == 200) {
+                            $("#" + successId).css({"display": "block"});
+                        } else {
+                        $("#" + errorId).css({"display": "block"});
+                        $("#" + errorMessageId).html(status.responseText);
+                        }
+                    },
+                    complete: () => {
+                        $("#" + buttonId).html(buttonText);
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
