@@ -168,11 +168,6 @@ pill.selected {
   .container .lower-signup {
     display: block !important;
   }
-  .container .features {
-    margin-top: -100px;
-    padding-top: 100px;
-    padding-bottom: 50px;
-  }
 }
 
 .container .lower-signup {
