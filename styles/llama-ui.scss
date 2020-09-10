@@ -169,6 +169,7 @@ pill {
     display: flex;
     flex-direction: row;
     
+    
     @media all and (max-width: 850px) {
         display: block !important;
         
@@ -183,6 +184,8 @@ pill {
 
         .features {
             margin-top: -100px;
+            padding-top: 100px;
+            padding-bottom: 50px;
         }
     }
 
