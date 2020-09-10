@@ -168,17 +168,17 @@ pill {
 
     display: flex;
     flex-direction: row;
-    
+
     
     @media all and (max-width: 850px) {
         display: block !important;
         
         .signup, .features, .lower-signup {
             width: 100% !important;
+            min-height: 400px;
         }
 
         .lower-signup {
-            
             display: block !important;
         }
 
