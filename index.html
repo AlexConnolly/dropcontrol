@@ -1,8 +1,35 @@
 <html>
     <!--Copyright Wild Bear Software - Do not copy -->
     <head>
-        <link rel="stylesheet" href="styles/llama-ui.css">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+
+            function addCss(isMobile) {    
+                var head  = document.getElementsByTagName('head')[0];
+                var link  = document.createElement('link');
+                link.id   = cssId;
+                link.rel  = 'stylesheet';
+                link.type = 'text/css';
+                link.media = 'all';
+
+                if(isMobile) {
+                    link.href = 'styles/llama-ui.css';
+                } else {
+                    link.href = 'styles/llama-ui.css';
+                }
+
+                head.appendChild(link);
+            }
+
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                addCss(true);
+            } else {
+                addCss(false);
+            }
+
+        </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
